@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('image')->nullable(true);
             $table->string('name')->nullable(true);
             $table->string('phone')->nullable(true);
-            $table->string('position')->nullable(true);
             $table->uuid('division_id');
             $table->foreign('division_id')
                 ->references('id')
                 ->on('divisions')
                 ->cascadeOnDelete();
+            $table->string('position')->nullable(true);
             $table->timestamps();
         });
     }

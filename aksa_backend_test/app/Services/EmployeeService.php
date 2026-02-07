@@ -24,7 +24,6 @@ class EmployeeService
 
     public function createEmployee(array $data)
     {
-
         return $this->employeeRepository->addEmployees($data);
     }
 
@@ -36,5 +35,10 @@ class EmployeeService
     public function deleteEmployee($id)
     {
         return $this->employeeRepository->deleteEmployee($id);
+    }
+
+    public function updateEmployee(string $id, array $data)
+    {
+        return $this->employeeRepository->updateEmployee($id, $data);
     }
 }

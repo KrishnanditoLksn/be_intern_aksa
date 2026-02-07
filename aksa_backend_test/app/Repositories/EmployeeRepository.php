@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Employee;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -51,5 +52,35 @@ class EmployeeRepository
     public function deleteEmployee($id)
     {
         return Employee::where("id", $id)->delete();
+    }
+
+    public function updateEmployee(string $id, array $data)
+    {
+        $employee = Employee::findOrFail($id);
+        $name     = $data['name'];
+        $phone    = $data['phone'];
+        $division  = $data['division'];
+        $position = $data['position'];
+        $imagePath = $employee->image;
+
+        if (isset($data['image']) && $data['image'] instanceof \Illuminate\Http\UploadedFile) {
+            if ($employee->image && Storage::disk('public')->exists('employees/' . $employee->image)) {
+                Storage::disk('public')->delete('employees/' . $employee->image);
+            }
+            $file = $data['image'];
+            $imageName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('employees', $imageName, 'public');
+            $imagePath = $imageName;
+        }
+
+        $employee->update([
+            'image'       => $imagePath,
+            'name'        => $name,
+            'phone'       => $phone,
+            'division' => $division,
+            'position'    => $position,
+        ]);
+
+        return $employee;
     }
 }

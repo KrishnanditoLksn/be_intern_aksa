@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Admin;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Request;

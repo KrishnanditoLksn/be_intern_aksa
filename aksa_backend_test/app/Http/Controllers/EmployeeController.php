@@ -80,11 +80,14 @@ class EmployeeController extends Controller
                     "status" => "error",
                     "message" => "Employee Already Exists"
                 ], 409);
+            } else {
+                $this->employee->createEmployee($data);
+
+                return response()->json([
+                    'status' => "success",
+                    'message' => 'Employee created successfully',
+                ], 201);
             }
-            return response()->json([
-                'status' => "success",
-                'message' => 'Employee created successfully',
-            ], 201);
         } catch (\Throwable $th) {
             return response()->json([
                 'status' => 'error',
@@ -97,7 +100,6 @@ class EmployeeController extends Controller
     {
         try {
             $this->employee->deleteEmployee($id);
-            
             return response()->json([
                 'status' => "success",
                 'message' => 'Employee deleted successfully',
@@ -110,5 +112,24 @@ class EmployeeController extends Controller
         }
     }
 
-    public function updateEmploees() {}
+    public function updateEmployees($uuid, Request $request)
+    {
+        try {
+
+            $this->employee->updateEmployee(
+                $uuid,
+                $request->all()
+            );
+
+            return response()->json([
+                'status' => "success",
+                'message' => 'Employee updated successfully',
+            ], 201);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
 }

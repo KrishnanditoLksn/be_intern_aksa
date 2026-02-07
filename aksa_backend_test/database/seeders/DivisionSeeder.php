@@ -11,9 +11,9 @@ class DivisionSeeder extends Seeder
 {
     public function run(): void
     {
-        Schema::disableForeignKeyConstraints();
-        Division::truncate();
-        Schema::enableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
+        // Division::truncate();
+        // Schema::enableForeignKeyConstraints();
 
         $divisions = [
             ['name' => 'Mobile Development'],
