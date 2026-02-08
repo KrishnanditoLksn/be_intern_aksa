@@ -32,7 +32,7 @@ https://domain.com/api/v1
 
 ### Login
 
-`POST /auth/login`
+`POST /login`
 
 **Request Body**
 
@@ -47,16 +47,18 @@ https://domain.com/api/v1
 
 ```json
 {
-  "status": true,
-  "message": "Login success",
-  "data": {
-    "token": "Bearer xxxxx",
-    "user": {
-      "id": 1,
-      "name": "John Doe",
-      "email": "user@mail.com"
+    "status": "success",
+    "message": "Login berhasil",
+    "data": {
+        "token": "4|JUwPINoh4AVS3siUs09EUeAzle8pqOlrekxlm9tO9a5a77d6",
+        "admin": {
+            "id": "019c387d-e25d-72c8-8998-24977b4257f9",
+            "name": "Joko",
+            "username": "admin",
+            "phone": "081234567890",
+            "email": "admin@example.com"
+        }
     }
-  }
 }
 ```
 
@@ -64,7 +66,7 @@ https://domain.com/api/v1
 
 ### Logout
 
-`POST /auth/logout`
+`POST /logout`
 
 **Headers**
 
@@ -76,18 +78,18 @@ Authorization: Bearer {token}
 
 ```json
 {
-  "status": true,
-  "message": "Logout success"
+    "status": "success",
+    "message": "Logout successfully"
 }
 ```
 
 ---
 
-## 👤 Users
+## 👤 Divisions
 
-### Get All Users
+### Get All Divisions
 
-`GET /users`
+`GET /divisions`
 
 **Headers**
 
@@ -100,38 +102,49 @@ Authorization: Bearer {token}
 | Parameter | Type   | Description          |
 | --------- | ------ | -------------------- |
 | page      | int    | Pagination page      |
-| search    | string | Search by name/email |
+| search    | string | Search by name |
 
 **Response 200**
 
 ```json
 {
-  "status": true,
-  "message": "List users",
-  "data": [
-    {
-      "id": 1,
-      "name": "John Doe",
-      "email": "john@mail.com"
+    "status": "success",
+    "message": "List Divisions",
+    "data": {
+        "data": [
+            {
+                "id": "019c387d-e27a-7063-b62e-f2c00ae6f248",
+                "name": "UI/UX Designer"
+            }
+        ],
+        "pagination": {
+            "total": 1,
+            "per_page": 10,
+            "current_page": 1,
+            "last_page": 1,
+            "from": 1,
+            "to": 1
+        }
     }
-  ]
 }
 ```
 
 
 ---
 
-### Create User
+### Create Employee
 
-`POST /users`
+`POST /employees`
 
 **Request Body**
 
 ```json
 {
-  "name": "John Doe",
-  "email": "john@mail.com",
-  "password": "password"
+    "image": "file foto pegawai",
+    "name": "nama pegawai",
+    "phone": "no telepon pegawai",
+    "division": "uuid divisi",
+    "position": "jabatan pegawai",
 }
 ```
 
@@ -139,37 +152,51 @@ Authorization: Bearer {token}
 
 ```json
 {
-  "status": true,
-  "message": "User created"
+    "status": "success",
+    "message": "Employee created successfully"
 }
 ```
 
 ---
 
-### Update User
+### Update Employee
 
-`PUT /users/{id}`
+`PUT /employees`
 
 **Request Body**
 
 ```json
 {
-  "name": "John Updated"
+    "image": "file foto pegawai",
+    "name": "nama pegawai",
+    "phone": "no telepon pegawai",
+    "division": "uuid divisi",
+    "position": "jabatan pegawai",
 }
 ```
 
+**Response 201**
+
+```json
+{
+    "status": "success",
+    "message": "Employee updated successfully"
+}
+```
+
+
 ---
 
-### Delete User
+### Delete Employees
 
-`DELETE /users/{id}`
+`DELETE /employees/{uuid pegawai}`
 
 **Response 200**
 
 ```json
 {
-  "status": true,
-  "message": "User deleted"
+    "status": "success",
+    "message": "Employee deleted successfully"
 }
 ```
 
@@ -213,11 +240,6 @@ Authorization: Bearer {token}
 | 500  | Internal Server Error |
 
 ---
-
 ## 📑 Catatan
-
 * Semua endpoint (kecuali login) membutuhkan token
-* Gunakan pagination untuk data besar
-* Gunakan API Resource untuk response konsisten
-
 ---
