@@ -85,7 +85,6 @@ Authorization: Bearer {token}
 
 ---
 
-## 👤 Divisions
 
 ### Get All Divisions
 
@@ -158,6 +157,74 @@ Authorization: Bearer {token}
 ```
 
 ---
+
+
+
+### Get Employee
+
+`GET  /employees`
+
+**Request Body**
+
+```json
+{
+    "name": "pencarian nama",
+    "division_id": "filter berdasarkan divisi",
+}
+
+```
+**Response 201**
+
+```json
+{
+    "status": "success",
+    "message": "Employee Found",
+    "data": {
+        "employees": [
+            {
+                "id": "019c3891-531a-70da-8e7c-89d9db6a0db7",
+                "image": "http://127.0.0.1:8000/storage/employees/MwE8LjaXHPLjUUpdicGonIjFRBMmCoZZfWeT4qfb.png",
+                "name": "Emmanuel",
+                "phone": "0832131333",
+                "division_id": "019c387d-e27a-7063-b62e-f2c00ae6f248",
+                "position": "Manager Informatika",
+                "created_at": "2026-02-07T14:46:14.000000Z",
+                "updated_at": "2026-02-08T10:40:09.000000Z",
+                "division": {
+                    "id": "019c387d-e27a-7063-b62e-f2c00ae6f248",
+                    "name": "UI/UX Designer",
+                    "created_at": "2026-02-07T14:25:00.000000Z",
+                    "updated_at": "2026-02-07T14:25:00.000000Z"
+                }
+            },
+            {
+                "id": "019c3b1b-9bd4-7078-a9e9-29be0c4fb321",
+                "image": "http://127.0.0.1:8000/storage/employees/q5fG0vyuQOoURk7xKcDnYaLK66H2jyAFc0XPv0dG.png",
+                "name": "Emmanuelaaa",
+                "phone": "434243443",
+                "division_id": "019c387d-e27a-7063-b62e-f2c00ae6f248",
+                "position": "Manager",
+                "created_at": "2026-02-08T02:36:31.000000Z",
+                "updated_at": "2026-02-08T02:36:31.000000Z",
+                "division": {
+                    "id": "019c387d-e27a-7063-b62e-f2c00ae6f248",
+                    "name": "UI/UX Designer",
+                    "created_at": "2026-02-07T14:25:00.000000Z",
+                    "updated_at": "2026-02-07T14:25:00.000000Z"
+                }
+            }
+        ],
+        "pagination": {
+            "total": 2,
+            "per_page": 10,
+            "current_page": 1,
+            "last_page": 1,
+            "from": 1,
+            "to": 2
+        }
+    }
+}
+```
 
 ### Update Employee
 
