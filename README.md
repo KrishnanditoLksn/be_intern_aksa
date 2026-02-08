@@ -1,6 +1,6 @@
 # 📘 Dokumentasi API – Laravel
 
-Template dokumentasi API Laravel yang siap dipakai untuk **README GitHub** atau dokumentasi internal tim.
+Dokumentasi API Laravel untuk Manajemen Karyawan (CRUD).
 
 ---
 
