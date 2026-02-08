@@ -12,14 +12,14 @@ class DivisionRepository
     public function getDivisions($name)
     {
         $divisionToFind = Division::where($name, function ($query, $name) {
-            return $query->where('name', 'like', "%$name%");
+            return $query->where('name', '=', "$name");
         })
             ->paginate(10);
 
 
         return [
             'data' => $divisionToFind->getCollection()->map(function ($division) {
-                [
+                return [
                     'id' => $division->id,
                     'name' => $division->name,
                 ];
