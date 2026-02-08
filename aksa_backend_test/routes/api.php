@@ -17,7 +17,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/', [AuthController::class, 'health']);
     Route::get('/employees', [EmployeeController::class, 'getAllEmployees']);
     Route::post('/employees', [EmployeeController::class, 'addEmployees']);
-    Route::delete('/employees/delete/{id}', [EmployeeController::class, 'deleteEmployees']);
+    Route::delete('/employees/delete/{uuid}', [EmployeeController::class, 'deleteEmployees']);
     Route::get('/divisions', [DivisionController::class, 'getAllDivision']);
     Route::put('/employees/{uuid}', [EmployeeController::class, 'updateEmployees']);
 });
